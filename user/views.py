@@ -53,3 +53,5 @@ class ShopView(View):
 class SignView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'pages/sign.html')
+
+
