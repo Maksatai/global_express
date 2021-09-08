@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     #my_apps
     'card',
+    'parcels',
     'user',
     'webpack_loader',
     'webp_converter',
