@@ -40,6 +40,7 @@ class ParcelsView(TemplateView):
     template_name = "pages/parcels.html"
 
     def dispatch(self, request, *args, **kwargs):
+        parcels_form = OrderCreateForm()
         if request.method == 'POST':
             parcels_form = OrderCreateForm(request.POST)
             if parcels_form.is_valid():

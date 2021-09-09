@@ -1,5 +1,5 @@
 from django import forms
-from .models import COUNTRY_CHOICES, Parcels
+from .models import Parcels
 
 
 class OrderCreateForm(forms.ModelForm):
@@ -8,7 +8,7 @@ class OrderCreateForm(forms.ModelForm):
     price = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'sign__input','placeholder':'0.00 $'}))
     category = forms.CharField(widget=forms.TextInput(attrs={'class':'sign__input','placeholder':'Например Техника'}))
     amount = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'sign__input','placeholder':'Количество товара'}))
-    country = forms.ChoiceField(choices=COUNTRY_CHOICES,widget=forms.TextInput(attrs={'class':'sign__input country__input','placeholder':'Выберите страну'}))
+    country = forms.CharField(widget=forms.TextInput(attrs={'class':'sign__input country__input','placeholder':'Выберите страну'}))
     web_site = forms.URLField(widget=forms.TextInput(attrs={'class':'sign__input','placeholder':'www.primer.com'}))
     comment = forms.CharField(widget=forms.TextInput(attrs={'class':'sign__input modal__textarea','placeholder':'Можете оставить комментарий'}))
 
