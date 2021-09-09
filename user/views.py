@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, View
+from django.views.generic import DetailView, View,TemplateView
+from parcels.forms import OrderCreateForm
 
 class BaseView(View):
     def get(self, request, *args, **kwargs):
@@ -35,9 +36,18 @@ class NewsView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'pages/news.html')
 
-class ParcelsView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'pages/parcels.html')
+class ParcelsView(TemplateView):
+    template_name = "pages/parcels.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            parcels_form = OrderCreateForm(request.POST)
+            if parcels_form.is_valid():
+                parcels_form.save()
+                return render(request,self.template_name,{'parcels_form':parcels_form})
+        else:
+            parcels_form = OrderCreateForm()
+        return render(request, self.template_name,{'parcels_form':parcels_form})
 
 class PersonalAreaView(View):
     def get(self, request, *args, **kwargs):

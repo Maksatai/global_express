@@ -570,36 +570,42 @@
                         Мы постараемся доставить Вам посылку
                         как можно быстрее
                     </p>
-                    <form action="">
-                        <label class="sign__label">
-                            ФИО*
-                        </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="Ваше ФИО">
-
+                    <form action="" method="POST">
+                        {% csrf_token %}
                         <label class="sign__label">
                             Трекномер*
                         </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="Ваш трек номер">
+                        <!-- <input required type="text" class="sign__input"
+                               placeholder="Ваш трек номер"> -->
+                            {{ parcels_form.treck }}
 
                         <label class="sign__label">
                             Наименование*
                         </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="Например Zara, HM">
+                        <!-- <input required type="text" class="sign__input"
+                               placeholder="Например Zara, HM"> -->
+                            {{ parcels_form.parcels_name }}
 
                         <label class="sign__label">
-                            Общая стоимость*
+                            Цена товара*
                         </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="0.00 $">
+                        <!-- <input required type="text" class="sign__input"
+                               placeholder="0.00 $"> -->
+                            {{ parcels_form.price }}
 
                         <label class="sign__label">
                             Вид товара*
                         </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="Например Техника">
+                        <!-- <input required type="text" class="sign__input"
+                               placeholder="Например Техника"> -->
+                            {{ parcels_form.category }}
+
+                        <label class="sign__label">
+                            Количество*
+                        </label>
+                        <!-- <input required type="text" class="sign__input"
+                                placeholder="Количество товара"> -->
+                            {{ parcels_form.amount }}
 
                         <label class="sign__label">
                             Страна*
@@ -607,10 +613,11 @@
                         <div class="select__wrap">
                             <select required></select>
                             <div class="current__select-wrap">
-                                <input type="text"
+                                <!-- <input type="text"
                                        class="sign__input country__input"
                                        placeholder="Выберите страну"
-                                       readonly>
+                                       readonly> -->
+                                {{ parcels_form.country }}
                             </div>
                             <div class="select__option-wrap">
                                 <div class="select__option">
@@ -628,15 +635,17 @@
                         <label class="sign__label">
                             Веб сайт*
                         </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="www.primer.com">
+                        <!-- <input required type="text" class="sign__input"
+                               placeholder="www.primer.com"> -->
+                            {{ parcels_form.web_site }}
 
                         <label class="sign__label">
                             Комментарии
                         </label>
-                        <textarea maxlength="324"
+                        <!-- <textarea maxlength="324"
                                   class="sign__input modal__textarea"
-                                  placeholder="Можете оставить комментарий"></textarea>
+                                  placeholder="Можете оставить комментарий"></textarea> -->
+                            {{ parcels_form.comment }}
                         <div class="symbol__counter">
                             <span class="current__length">
                                 0
