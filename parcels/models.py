@@ -1,12 +1,11 @@
 from django.db import models
 from django.db.models.fields.related import ForeignKey
 from django.contrib.auth.models import User
-from datetime import datetime
 
 class Parcels(models.Model):
     order = ForeignKey(User, on_delete=models.CASCADE, default=True)
-    date = models.DateField(blank=False, default=datetime.now().strftime("%d.%m.%Y"))
-    recipient = models.CharField(null = False, max_length = 100)
+    date = models.DateField(blank=False, auto_now=True)
+    recipient = models.CharField(max_length = 100)
     parcels_name = models.CharField(null = False, max_length = 100)
     amount = models.PositiveIntegerField(null = True)
     price = models.DecimalField(default = 0.00, max_digits=10, decimal_places=2)

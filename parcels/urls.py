@@ -6,6 +6,6 @@ from .views import *
 
 urlpatterns = [
     path('parcels/',parcels, name='parcels'),
-    # path('add/<id>/',add_parcels, name ='add'),
-    path('delete/<id>/',delete_parcels,name='delete'),
+    path('add/',add_parcels, name ='add'),
+    path('delete/<int:id>/',delete_parcels,name='delete'),
 ]

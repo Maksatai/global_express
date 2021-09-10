@@ -13,9 +13,9 @@ def add_parcels(request):
     if request.method == 'POST':
         parcels_form = OrderCreateForm(request.POST)
         if parcels_form.is_valid():
-            parcel = parcels_form.save(commit=False)
-            parcel.order = request.user
-            parcel.save() 
+            # parcel = parcels_form.save(commit=False)
+            # parcel.order = request.user
+            parcels_form.save() 
         else:
             print(parcels_form.errors)
         return redirect(parcels)

@@ -16,4 +16,4 @@ class OrderCreateForm(forms.ModelForm):
 
     class Meta:
         model = Parcels
-        fields = ['treck','parcels_name','price','category','amount','country','web_site','comment']
+        fields = ['treck','parcels_name','recipient','price','category','amount','weight','country','web_site','comment']
