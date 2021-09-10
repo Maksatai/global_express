@@ -79,33 +79,43 @@
                                         Статус
                                     </th>
                                 </tr>
+                                {% for form in forms %}
                                 <tr>
                                     <td>
-                                        22.05.2020
+                                        <!-- 22.05.2020 -->
+                                        {{ form.date }}
                                     </td>
                                     <td>
-                                        64033
+                                        <!-- 64033 -->
+                                        {{ form.id }}
                                     </td>
                                     <td>
-                                        Алтымышев М.К
+                                        <!-- Алтымышев М.К -->
+                                        {{ form.recipient }}
                                     </td>
                                     <td>
-                                        Nike Air Jordan 1
+                                        <!-- Nike Air Jordan 1 -->
+                                        {{ form.parcels_name }}
                                     </td>
                                     <td>
-                                        1 шт
+                                        <!-- 1 шт -->
+                                        {{ form.amount }}
                                     </td>
                                     <td>
-                                        225.30 $
+                                        <!-- 225.30 $ -->
+                                        {{ form.price }}
                                     </td>
                                     <td>
-                                        0.50 кг
+                                        <!-- 0.50 кг -->
+                                        {{ form.weight }}
                                     </td>
                                     <td>
-                                        Турция
+                                        <!-- Турция -->
+                                        {{ form.country }}
                                     </td>
                                     <td>
-                                        123456789101234567
+                                        <!-- 123456789101234567 -->
+                                        {{ form.treck }}
                                     </td>
                                     <td class="td-icon">
                                         <div class="item">
@@ -135,7 +145,8 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                {% endfor %}
+                                <!-- <tr>
                                     <td>
                                         22.05.2020
                                     </td>
@@ -246,7 +257,7 @@
                                             </svg>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -572,6 +583,14 @@
                     </p>
                     <form action="" method="POST">
                         {% csrf_token %}
+
+                        <label class="sign__label">
+                            ФИО получателя*
+                        </label>
+                        <!-- <input required type="text" class="sign__input"
+                               placeholder="Ваше ФИО"> -->
+                            {{ parcels_form.recipient }}
+                               
                         <label class="sign__label">
                             Трекномер*
                         </label>
@@ -599,6 +618,13 @@
                         <!-- <input required type="text" class="sign__input"
                                placeholder="Например Техника"> -->
                             {{ parcels_form.category }}
+
+                        <label class="sign__label">
+                            Вес товара*
+                        </label>
+                        <!-- <input required type="text" class="sign__input"
+                            placeholder="Вес товара"> -->
+                            {{ parcels_form.weight }}
 
                         <label class="sign__label">
                             Количество*
