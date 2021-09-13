@@ -16,3 +16,6 @@ class Parcels(models.Model):
     category = models.CharField(max_length=100,null=False,default=False)
     web_site = models.URLField(max_length=200,null=False,default=False)
     comment = models.TextField(max_length=324,null=True)
+
+    def __str__(self):
+        return self.parcels_name

@@ -27,24 +27,6 @@
                          data-micromodal-trigger="add__product">
                         Добавить товар
                     </div>
-                    <!-- <div class="delete__wrap">
-                        <div class="delete__product">
-                            <form action="">
-                                <h3 class="delete__title">
-                                    Вы действительно хотите удалить товар?
-                                </h3>
-                                <div class="buttons">
-                                    <div class="cancel button">
-                                        Отмена
-                                    </div>
-                                    <button type="submit"
-                                            class="delete button">
-                                        Удалить
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div> -->
                         <div class="table__wrap">
                             <table>
                                 <tbody>
@@ -99,9 +81,130 @@
                                         </form>
                                     </div>
                                 </div>
+                                <div class="modal micromodal-slide" id="edit__product"
+                                aria-hidden="true">
+                               <div class="modal__overlay add__product-overlay" tabindex="-1"
+                                    data-micromodal-close>
+                                   <div class="modal__container" role="dialog" aria-modal="true">
+                                       <div class="area__modal">
+                                           <h2 class="modal__title">
+                                               Редактирование
+                                           </h2>
+                                           <p class="modal__subtitle">
+                                               Вы можете изменить некоторые пункты для лучшей доставки
+                                           </p>
+                                           <form action="{% url 'edit' form.id %}" method="POST">
+                                               {% csrf_token %}
+                       
+                                               <label class="sign__label">
+                                                   ФИО получателя*
+                                               </label>
+                                               <!-- <input  value="{{ Parsels.treck }}"> -->
+                                                    
+                                                   {{ parcels_form.recipient }}
+                                                      
+                                               <label class="sign__label">
+                                                   Трекномер*
+                                               </label>
+                                               <!-- <input required type="text" class="sign__input"
+                                                      placeholder="Ваш трек номер"> -->
+                                                   {{ parcels_form.treck }}
+                       
+                                               <label class="sign__label">
+                                                   Наименование*
+                                               </label>
+                                               <!-- <input required type="text" class="sign__input"
+                                                      placeholder="Например Zara, HM"> -->
+                                                   {{ parcels_form.parcels_name }}
+                       
+                                               <label class="sign__label">
+                                                   Цена товара*
+                                               </label>
+                                               <!-- <input required type="text" class="sign__input"
+                                                      placeholder="0.00 $"> -->
+                                                   {{ parcels_form.price }}
+                       
+                                               <label class="sign__label">
+                                                   Вид товара*
+                                               </label>
+                                               <!-- <input required type="text" class="sign__input"
+                                                      placeholder="Например Техника"> -->
+                                                   {{ parcels_form.category }}
+                       
+                                               <label class="sign__label">
+                                                   Вес товара*
+                                               </label>
+                                               <!-- <input required type="text" class="sign__input"
+                                                   placeholder="Вес товара"> -->
+                                                   {{ parcels_form.weight }}
+                       
+                                               <label class="sign__label">
+                                                   Количество*
+                                               </label>
+                                               <!-- <input required type="text" class="sign__input"
+                                                       placeholder="Количество товара"> -->
+                                                   {{ parcels_form.amount }}
+                       
+                                               <label class="sign__label">
+                                                   Страна*
+                                               </label>
+                                               <div class="select__wrap">
+                                                   <select required></select>
+                                                   <div class="current__select-wrap">
+                                                       <!-- <input type="text"
+                                                              class="sign__input country__input"
+                                                              placeholder="Выберите страну"
+                                                              readonly> -->
+                                                       {{ parcels_form.country }}
+                                                   </div>
+                                                   <div class="select__option-wrap">
+                                                       <div class="select__option">
+                                                           Корея
+                                                       </div>
+                                                       <div class="select__option">
+                                                           Турция
+                                                       </div>
+                                                       <div class="select__option">
+                                                           Китай
+                                                       </div>
+                                                   </div>
+                                               </div>
+                       
+                                               <label class="sign__label">
+                                                   Веб сайт*
+                                               </label>
+                                               <!-- <input required type="text" class="sign__input"
+                                                      placeholder="www.primer.com"> -->
+                                                   {{ parcels_form.web_site }}
+                       
+                                               <label class="sign__label">
+                                                   Комментарии
+                                               </label>
+                                               <!-- <textarea maxlength="324"
+                                                         class="sign__input modal__textarea"
+                                                         placeholder="Можете оставить комментарий"></textarea> -->
+                                                   {{ parcels_form.comment }}
+                                               <div class="symbol__counter">
+                                                   <span class="current__length">
+                                                       0
+                                                   </span>
+                                                   /
+                                                   <span class="total__length">
+                                                       324
+                                                   </span>
+                                               </div>
+                       
+                                               <button type="submit" class="personal__btn modal__btn">
+                                                   Сохранить изменения
+                                               </button>
+                                           </form>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
                                 <tr>
                                     <td>
-                                        {{ form.date }}
+                                        {{ form.date|date:"d-m-y" }}
                                     </td>
                                     <td>
                                         {{ form.id }}
@@ -380,91 +483,7 @@
         </div>
     </div>
 
-    <div class="modal micromodal-slide" id="edit__product"
-         aria-hidden="true">
-        <div class="modal__overlay add__product-overlay" tabindex="-1"
-             data-micromodal-close>
-            <div class="modal__container" role="dialog" aria-modal="true">
-                <div class="area__modal">
-                    <h2 class="modal__title">
-                        Редактирование
-                    </h2>
-                    <p class="modal__subtitle">
-                        Вы можете изменить некоторые пункты для лучшей доставке
-                    </p>
-                    <form action="">
-                        <label class="sign__label">
-                            Трекномер*
-                        </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="Ваш трек номер">
-
-                        <label class="sign__label">
-                            Название магазина*
-                        </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="Например Zara, HM">
-
-                        <label class="sign__label">
-                            Вид товара*
-                        </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="Например Техника">
-
-                        <label class="sign__label">
-                            Страна*
-                        </label>
-                        <div class="select__wrap">
-                            <select required></select>
-                            <div class="current__select-wrap">
-                                <input type="text"
-                                       class="sign__input country__input"
-                                       placeholder="Выберите страну"
-                                       readonly>
-                            </div>
-                            <div class="select__option-wrap">
-                                <div class="select__option">
-                                    Корея
-                                </div>
-                                <div class="select__option">
-                                    Турция
-                                </div>
-                                <div class="select__option">
-                                    Китай
-                                </div>
-                            </div>
-                        </div>
-
-                        <label class="sign__label">
-                            Веб сайт*
-                        </label>
-                        <input required type="text" class="sign__input"
-                               placeholder="www.primer.com">
-
-                        <label class="sign__label">
-                            Комментарии
-                        </label>
-                        <textarea maxlength="324"
-                                  class="sign__input modal__textarea"
-                                  placeholder="Можете оставить комментарий"></textarea>
-                        <div class="symbol__counter">
-                            <span class="current__length">
-                                0
-                            </span>
-                            /
-                            <span class="total__length">
-                                324
-                            </span>
-                        </div>
-
-                        <button type="submit" class="personal__btn modal__btn">
-                            Сохранить изменения
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
     <div class="modal micromodal-slide" id="add__product"
          aria-hidden="true">

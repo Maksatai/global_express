@@ -28,3 +28,21 @@ def delete_parcels(request,id):
     parcel=Parcels.objects.get(id=id)
     parcel.delete()
     return redirect(parcels)
+
+
+def edit_parcels(request, id):
+    parcel = Parcels.objects.get(id=id)
+    if request.method == 'POST':
+        form = OrderCreateForm(request.POST,instance=parcel)
+        print(form)
+        if form.is_valid():
+            parc = form.save(commit=False)
+            parc.order = request.user
+            parc.save()
+            return redirect('parcels')
+
+    form = OrderCreateForm(instance=parcel)
+    return render(request, 'parcels', {'form': form})
+
+
+    
