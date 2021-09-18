@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
+from django.views.generic.edit import UpdateView
 from .models import Parcels
 from .forms import OrderCreateForm
 
@@ -31,22 +32,26 @@ def add_parcels(request):
         
 def delete_parcels(request,id):
     parcel=Parcels.objects.get(id=id)
-    # if (parcel.status=='during' or parcel.status=='processed_1' or parcel.status=='processed_2' or parcel.status=='processed_3'):
-    parcel.delete()
+    if (parcel.status=='during' or parcel.status=='processed_1'):
+        parcel.delete()
     return redirect(parcels)
 
 
-def edit_parcels(request, id):
-    parcel = Parcels.objects.get(id=id)
-    if request.method == 'POST':
-        form = OrderCreateForm(request.POST,instance=parcel)
-        print(form)
-        if form.is_valid():
-            parc = form.save(commit=False)
-            parc.order = request.user
-            parc.save()
-            return redirect('parcels')
+# def edit_parcels(request, id):
+#     parcel = Parcels.objects.get(id=id)
+#     if request.method == 'POST':
+#         form = OrderCreateForm(request.POST,instance=parcel)
+#         if form.is_valid():
+#             parc = form.save(commit=False)
+#             parc.order = request.user
+#             parc.save()
+#             return redirect('parcels')
 
-    form = OrderCreateForm(instance=parcel)
-    return render(request, 'parcels', {'form': form})
+#     form = OrderCreateForm(instance=parcel)
+#     return render(request, 'parcels', {'form': form})
+
+class AuthorUpdateView(UpdateView):
+    model = Parcels
+    fields = ['treck','parcels_name','recipient','price','category','amount','weight','country','web_site','comment']
+    success_url ="/"
 

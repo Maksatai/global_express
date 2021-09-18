@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django_countries',
 
     #my_apps
-    'card',
     'parcels',
     'user',
     'webpack_loader',
@@ -88,7 +87,7 @@ WSGI_APPLICATION = 'globalExpress.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'globalexpress_db',
         'USER': 'postgres',
         'PASSWORD': 'postgres',

@@ -83,6 +83,7 @@
                                             </div>
                                         </form>
                                     </div>
+                                {% if form.status != 'unregistered_order' %}
                                 <div class="modal micromodal-slide" id="edit__product"
                                 aria-hidden="true">
                                <div class="modal__overlay add__product-overlay" tabindex="-1"
@@ -146,7 +147,6 @@
                                                <div class="select__wrap">
                                                    <select required></select>
                                                    <div class="current__select-wrap">
-                                      
                                                        {{ parcels_form.country }}
                                                    </div>
                                                    <div class="select__option-wrap">
@@ -191,6 +191,7 @@
                                    </div>
                                </div>
                            </div>
+                           {% endif %}
                                 <tr>
                                     <td>
                                         {{ form.date|date:"d-m-y" }}
@@ -334,6 +335,16 @@
 
                             {% elif page_obj.has_next %}
                             <div class="arrow">
+                                <svg width="8" height="14" viewBox="0 0 8 14"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 1L1 6.7L7 13" stroke="#003CAA"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="arrow">
                                 <a href="?page={{ page_obj.next_page_number }}">
                                 <svg width="8" height="14" viewBox="0 0 8 14"
                                      fill="none"
@@ -345,18 +356,9 @@
                                 </svg>
                             </a>
                             </div>
-                            <div class="arrow">
-                                <svg width="8" height="14" viewBox="0 0 8 14"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7 1L1 6.7L7 13" stroke="#003CAA"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"/>
-                                </svg>
-                            </div>
                             {% endif %}
                         </div>
+                        
                         <div class="pages">
                             <div>
                                 Стр.
@@ -582,6 +584,7 @@
                                
                         <label class="sign__label">
                             Трекномер*
+                            
                         </label>
           
                             {{ parcels_form.treck }}
